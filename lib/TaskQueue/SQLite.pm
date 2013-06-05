@@ -54,3 +54,5 @@ CREATE TABLE jobs (
 SCHEMA
     $dbh->do($schema) or die DBI::errstr;
 }
+
+1;

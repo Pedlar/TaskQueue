@@ -6,9 +6,10 @@ use TaskQueue::SQLite;
 
 sub new {
     my $clss = shift;
-    $self = {
-        _queue => '';
+    my $self = {
+        _queue => '',
     };
+    return bless $self, $clss;
 }
 
 sub collect {
@@ -19,6 +20,8 @@ sub collect {
         my $job = TaskQueue::Job->new($_);
         push @queue, $job;
     }
-    $self->{_queue} = @queue;
-    return $self->{_queue};
+    $self->{_queue} = \@queue;
+    return [@queue];
 }
+
+1;
